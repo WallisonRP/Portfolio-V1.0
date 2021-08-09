@@ -7,11 +7,17 @@ export default function initMenuMobile() {
 
   if(menuButton) {
     function openMenu(event) {
+      if (event.type === 'touchstart') event.preventDefault();
       menuList.classList.add('active');
       menuButton.classList.add('active');
+      const activeMenu = menuList.classList.contains('active');
+        event.currentTarget.setAttribute('aria-expanded', activeMenu)
+      console.log(activeMenu)
+      
       outsideClick(menuList, eventos, () => {
         menuList.classList.remove('active');
         menuButton.classList.remove('active');
+        
       })
     }
     eventos.forEach((evento) => {
